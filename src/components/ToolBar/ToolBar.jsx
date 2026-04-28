@@ -1,10 +1,15 @@
 import React from "react";
 import "./ToolBar.css";
 
-function ToolBar({ onBrushColorChange }) {
+function ToolBar({ onBrushColorChange, onClear }) {
   return (
     <div className="toolbar">
-      <button className="wiper-btn">WIPER</button>
+      <button
+        className="wiper-btn"
+        onClick={() => onBrushColorChange("#0a0e14")}
+      >
+        WIPER
+      </button>
 
       <button
         className="lime-btn"
@@ -27,7 +32,9 @@ function ToolBar({ onBrushColorChange }) {
         onClick={() => onBrushColorChange("#ffb454")}
       />
 
-      <button className="clear-btn">CLEAR</button>
+      <button className="clear-btn" onClick={onClear}>
+        CLEAR
+      </button>
     </div>
   );
 }

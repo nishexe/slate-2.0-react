@@ -9,11 +9,21 @@ function App() {
   const [brushSize, setBrushSize] = useState(5);
   const [brushColor, setBrushColor] = useState("#FFFFFF");
 
+  const [clearFlag, setClearFlag] = useState(false);
+
+  const handleClear = () => {
+    setClearFlag((prev) => !prev);
+  };
+
   return (
     <div className="wrapper">
       <SliderBar value={brushSize} onChange={setBrushSize} />
-      <MainCanvas brushSize={brushSize} brushColor={brushColor} />
-      <ToolBar onBrushColorChange={setBrushColor} />
+      <MainCanvas
+        brushSize={brushSize}
+        brushColor={brushColor}
+        clearFlag={clearFlag}
+      />
+      <ToolBar onBrushColorChange={setBrushColor} onClear={handleClear} />
     </div>
   );
 }

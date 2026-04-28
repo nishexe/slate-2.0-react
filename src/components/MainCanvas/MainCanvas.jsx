@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import "./MainCanvas.css";
 
-function MainCanvas({ brushSize, brushColor }) {
+function MainCanvas({ brushSize, brushColor, clearFlag }) {
   const canvasRef = useRef(null);
   const isDrawing = useRef(false);
   const lastPos = useRef({ x: 0, y: 0 });
@@ -57,7 +57,7 @@ function MainCanvas({ brushSize, brushColor }) {
       const pos = getPos(e);
 
       ctx.lineWidth = brushSizeRef.current;
-      ctx.strokeStyle = brushColorRef.current; // 👈 USE LATEST COLOR
+      ctx.strokeStyle = brushColorRef.current;
 
       ctx.beginPath();
       ctx.moveTo(lastPos.current.x, lastPos.current.y);
@@ -84,6 +84,16 @@ function MainCanvas({ brushSize, brushColor }) {
       canvas.removeEventListener("mouseleave", stopDrawing);
     };
   }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+
+    if (!canvas) return;
+
+    ctx.fillStyle = "#0a0e14";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }, [clearFlag]);
 
   return (
     <div className="canvas-container">
