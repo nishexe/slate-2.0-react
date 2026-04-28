@@ -8,24 +8,35 @@ function MainCanvas() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
+    let prevWidth = 0;
+    let prevHeight = 0;
+
     const initCanvas = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      // console.log(`Canvas Offset Height is : ${canvas.offsetHeight}`);
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+
+      canvas.width = width;
+      canvas.height = height;
+
       ctx.fillStyle = "#dc4343";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, width, height);
     };
+
+    const observer = new ResizeObserver(initCanvas);
+    observer.observe(canvas);
 
     initCanvas();
 
-    window.addEventListener("resize", initCanvas);
-
     return () => {
-      window.removeEventListener("resize", initCanvas);
+      observer.disconnect();
     };
   }, []);
 
-  return <canvas ref={canvasRef} />;
+  return (
+    <div className="canvas-container">
+      <canvas ref={canvasRef} />
+    </div>
+  );
 }
 
 export default MainCanvas;
