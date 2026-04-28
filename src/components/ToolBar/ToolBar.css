@@ -1,6 +1,112 @@
-h1{
-    color: white;
+.toolbar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
 }
-*{
-    flex-shrink: 0;
+
+.wiper-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px; /* fully rounded */
+  background-color: #ef4444; /* red */
+  color: #ffffff; /* white text */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+.wiper-btn:hover {
+  outline: 2px solid #ef4444;
+  outline-offset: 2px;
+}
+
+.clear-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px; /* fully rounded */
+  background-color: #ffffff; /* red */
+  color: #0a0e14; /* white text */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+.clear-btn:hover {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px
+}
+
+/* Could be a better way, idk, setting up color buttons*/
+.lime-btn {
+  padding: 20px 20px;
+  border: none;
+  border-radius: 999px; /* fully rounded */
+  background-color: #c2d647; /* red */
+  color: #0a0e14; /* white text */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+.lime-btn:hover {
+  outline: 2px solid #c2d647;
+  outline-offset: 2px
+}
+
+.blue-btn {
+  padding: 20px 20px;
+  border: none;
+  border-radius: 999px; /* fully rounded */
+  background-color: #87cefa; /* red */
+  color: #0a0e14; /* white text */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+.blue-btn:hover {
+  outline: 2px solid #87cefa;
+  outline-offset: 2px
+}
+
+.white-btn {
+  padding: 20px 20px;
+  border: none;
+  border-radius: 999px; /* fully rounded */
+  background-color: #FFFFFF; /* red */
+  color: #0a0e14; /* white text */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+.white-btn:hover {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px
+}
+
+.orange-btn {
+  padding: 20px 20px;
+  border: none;
+  border-radius: 999px; /* fully rounded */
+  background-color: #d85c14; /* red */
+  color: #0a0e14; /* white text */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+.orange-btn:hover {
+  outline: 2px solid #d85c14;
+  outline-offset: 2px
+}
+
+.yellow-btn {
+  padding: 20px 20px;
+  border: none;
+  border-radius: 999px; /* fully rounded */
+  background-color: #ffb454; /* red */
+  color: #0a0e14; /* white text */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+.yellow-btn:hover {
+  outline: 2px solid #ffb454;
+  outline-offset: 2px
 }

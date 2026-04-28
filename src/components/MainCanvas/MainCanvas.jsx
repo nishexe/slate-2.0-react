@@ -22,7 +22,7 @@ function MainCanvas({ brushSize }) {
       canvas.width = width;
       canvas.height = height;
 
-      ctx.fillStyle = "#11111b";
+      ctx.fillStyle = "#0a0e14";
       ctx.fillRect(0, 0, width, height);
 
       ctx.lineCap = "round";
