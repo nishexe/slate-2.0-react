@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import "./SliderBar.css";
-function SliderBar() {
-  const [value, setValue] = useState(5);
+function SliderBar({ value, onChange }) {
   function handleChange(e) {
-    // console.log(e.target.value);
-    setValue(e.target.value);
+    onChange(Number(e.target.value));
   }
+
   return (
     <div>
       <input
         type="range"
         min="1"
-        max="100"
+        max="50"
         value={value}
         className="slider"
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
       />
     </div>
   );

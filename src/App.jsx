@@ -6,11 +6,12 @@ import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [brushSize, setBrushSize] = useState(5);
 
   return (
     <div className="wrapper">
-      <SliderBar />
-      <MainCanvas />
+      <SliderBar value={brushSize} onChange={setBrushSize} />
+      <MainCanvas brushSize={brushSize} />
       <ToolBar />
     </div>
   );

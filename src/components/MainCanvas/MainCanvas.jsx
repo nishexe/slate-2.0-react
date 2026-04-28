@@ -1,15 +1,19 @@
 import React, { useRef, useEffect } from "react";
 import "./MainCanvas.css";
 
-function MainCanvas() {
+function MainCanvas({ brushSize }) {
   const canvasRef = useRef(null);
+  const isDrawing = useRef(false);
+  const lastPos = useRef({ x: 0, y: 0 });
+  const brushSizeRef = useRef(brushSize);
+
+  useEffect(() => {
+    brushSizeRef.current = brushSize;
+  }, [brushSize]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
-
-    let prevWidth = 0;
-    let prevHeight = 0;
 
     const initCanvas = () => {
       const width = canvas.clientWidth;
@@ -18,17 +22,60 @@ function MainCanvas() {
       canvas.width = width;
       canvas.height = height;
 
-      ctx.fillStyle = "#dc4343";
+      ctx.fillStyle = "#11111b";
       ctx.fillRect(0, 0, width, height);
+
+      ctx.lineCap = "round";
+      ctx.strokeStyle = "#ffffff";
     };
 
     const observer = new ResizeObserver(initCanvas);
     observer.observe(canvas);
-
     initCanvas();
+
+    const getPos = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      };
+    };
+
+    const handleMouseDown = (e) => {
+      isDrawing.current = true;
+      lastPos.current = getPos(e);
+    };
+
+    const handleMouseMove = (e) => {
+      if (!isDrawing.current) return;
+
+      const pos = getPos(e);
+
+      ctx.lineWidth = brushSizeRef.current;
+
+      ctx.beginPath();
+      ctx.moveTo(lastPos.current.x, lastPos.current.y);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+
+      lastPos.current = pos;
+    };
+
+    const stopDrawing = () => {
+      isDrawing.current = false;
+    };
+
+    canvas.addEventListener("mousedown", handleMouseDown);
+    canvas.addEventListener("mousemove", handleMouseMove);
+    canvas.addEventListener("mouseup", stopDrawing);
+    canvas.addEventListener("mouseleave", stopDrawing);
 
     return () => {
       observer.disconnect();
+      canvas.removeEventListener("mousedown", handleMouseDown);
+      canvas.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("mouseup", stopDrawing);
+      canvas.removeEventListener("mouseleave", stopDrawing);
     };
   }, []);
 
