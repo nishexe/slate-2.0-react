@@ -1,15 +1,21 @@
 import React, { useRef, useEffect } from "react";
 import "./MainCanvas.css";
 
-function MainCanvas({ brushSize }) {
+function MainCanvas({ brushSize, brushColor }) {
   const canvasRef = useRef(null);
   const isDrawing = useRef(false);
   const lastPos = useRef({ x: 0, y: 0 });
+
   const brushSizeRef = useRef(brushSize);
+  const brushColorRef = useRef(brushColor);
 
   useEffect(() => {
     brushSizeRef.current = brushSize;
   }, [brushSize]);
+
+  useEffect(() => {
+    brushColorRef.current = brushColor;
+  }, [brushColor]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -26,7 +32,6 @@ function MainCanvas({ brushSize }) {
       ctx.fillRect(0, 0, width, height);
 
       ctx.lineCap = "round";
-      ctx.strokeStyle = "#ffffff";
     };
 
     const observer = new ResizeObserver(initCanvas);
@@ -52,6 +57,7 @@ function MainCanvas({ brushSize }) {
       const pos = getPos(e);
 
       ctx.lineWidth = brushSizeRef.current;
+      ctx.strokeStyle = brushColorRef.current; // 👈 USE LATEST COLOR
 
       ctx.beginPath();
       ctx.moveTo(lastPos.current.x, lastPos.current.y);
