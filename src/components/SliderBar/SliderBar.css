@@ -1,0 +1,36 @@
+.slider {
+    padding: 10px;
+    width: 100%;
+}
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+.slider::-webkit-slider-runnable-track {
+  height: 10px;
+  background: #444;
+  border-radius: 10px;
+}
+.slider::-moz-range-track {
+  height: 6px;
+  background: #444;
+  border-radius: 10px;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -5px; /* aligns thumb with track */
+}
+.slider::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
